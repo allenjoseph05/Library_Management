@@ -8,27 +8,28 @@ import { Router } from '@angular/router';
   templateUrl: './create-books.component.html',
   styleUrls: ['./create-books.component.css']
 })
-export class CreateBooksComponent implements OnInit{
-
+export class CreateBooksComponent implements OnInit {
   books: Books = new Books();
-  constructor(private bookService: BookService, private router: Router){}
 
-  ngOnInit(): void {
-    
+  constructor(private bookService: BookService, private router: Router) {}
+
+  ngOnInit(): void {}
+
+  saveBooks() {
+    this.bookService.createBooks(this.books).subscribe(
+      (data) => {
+        console.log(data);
+        this.goToBookList();
+      },
+      (error) => console.log(error)
+    );
   }
 
-  saveBooks(){
-    this.bookService.createBooks(this.books).subscribe(data=>{
-      console.log(data);
-      this.goToBookList();
-    },error=>console.log(error));
+  goToBookList() {
+    this.router.navigate(['/admin/books']);
   }
 
-  goToBookList(){
-    this.router.navigate(['/books']);
-  }
-  Submit(){
+  Submit() {
     this.saveBooks();
   }
-
 }
