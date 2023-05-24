@@ -20,7 +20,7 @@ export class UpdateBooksComponent implements OnInit{
   }
 
   goToBookList(){
-    this.router.navigate(['/books']);
+    this.router.navigate(['/admin/books']);
   }
 
   Submit(){
